@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import img from '../utils/img/10.png';
-import photo from '../utils/img/12.png'
-import arrow from '../utils/img/15.png'
+import React from 'react'
+import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
+import img from '../../static/img/10.png'
+import photo from '../../static/img/12.png'
+import arrow from '../../static/img/15.png'
 
 const StyledBackground = styled.div`
   width: 100%;
@@ -17,7 +18,7 @@ const StyledOverlay = styled.div`
   position: absolute;
   top: 4rem;
   background: #000;
-  opacity: .5;
+  opacity: 0.5;
   width: 100%;
   height: 45rem;
 `
@@ -41,6 +42,7 @@ const StyledMain = styled.div`
   h2 {
     font-size: 2.6rem;
     text-align: center;
+    font-family: 'PT Serif', serif;
   }
 
   div {
@@ -64,7 +66,7 @@ const SliderButton = styled.div`
     margin: 0;
     width: 1.8rem;
     height: 1.8rem;
-    transition: all .5s;
+    transition: all 0.5s;
   }
 
   &:hover img {
@@ -73,10 +75,8 @@ const SliderButton = styled.div`
   }
 `
 
-const Main = ({data}) => {
-  const createMarkup = () => {
-    return {__html: data};
-  }
+const Main = ({ data }) => {
+  const createMarkup = () => ({ __html: data })
 
   return (
     <>
@@ -87,10 +87,10 @@ const Main = ({data}) => {
           <img src={arrow} alt="arrow" />
         </SliderButton>
         <div>
-          <img src={photo} alt="photo" />
+          <img src={photo} alt="avatar" />
           <h2 dangerouslySetInnerHTML={createMarkup()} />
         </div>
-        <SliderButton style={{ transform: "rotate(180deg)" }}>
+        <SliderButton style={{ transform: 'rotate(180deg)' }}>
           <img src={arrow} alt="arrow" />
         </SliderButton>
       </StyledMain>
@@ -98,4 +98,8 @@ const Main = ({data}) => {
   )
 }
 
-export default Main;
+Main.propTypes = {
+  data: PropTypes.element.isRequired,
+}
+
+export default Main

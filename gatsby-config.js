@@ -6,7 +6,7 @@ require('dotenv').config({
 
 const website = require('./config/website')
 
-const pathPrefix = website.pathPrefix === '/' ? 'https://blog-t.prismic.io/' : website.pathPrefix
+const pathPrefix = website.pathPrefix === '/' ? '/' : website.pathPrefix
 
 module.exports = {
   /* General Information */

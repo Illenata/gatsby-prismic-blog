@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import img from '../utils/img/11.png';
+import React from 'react'
+import styled from '@emotion/styled'
+import img from '../../static/img/11.png'
 
 const StyledDiv = styled.div`
   display: flex;
@@ -19,24 +19,24 @@ const StyledDiv = styled.div`
     color: #fff;
 
     h2 {
-      margin-bottom: .4rem;
+      margin-bottom: 0.4rem;
+      font-family: 'PT Serif', serif;
     }
 
     p {
       color: #8baeff;
       font-size: 1.3rem;
+      font-family: 'PT Serif', serif;
     }
   }
 `
 
-const themeInput = () => {
-  return `
+const themeInput = () => `
     border-radius: 2rem;
     border: none;
     outline: none;
     height: 2.5rem;
   `
-}
 
 const StyledInput = styled.input`
   ${themeInput}
@@ -57,19 +57,17 @@ const StyledSubmit = styled.input`
   cursor: pointer;
 `
 
-const Signin = () => {
-  return (
-    <StyledDiv>
-      <div>
-        <h2>Newsletter</h2>
-        <p>Donec elementum dui semper, pretium dui quis, pretium nisl.</p>
-        <form action="sign">
-          <StyledInput type="email" />
-          <StyledSubmit type="submit" value="Sign up" />
-        </form>
-      </div>
-    </StyledDiv>
-  )
-}
+const Signin = () => (
+  <StyledDiv>
+    <div>
+      <h2>Newsletter</h2>
+      <p>Donec elementum dui semper, pretium dui quis, pretium nisl.</p>
+      <form action="sign">
+        <StyledInput type="email" />
+        <StyledSubmit type="submit" value="Sign up" />
+      </form>
+    </div>
+  </StyledDiv>
+)
 
-export default Signin;
+export default Signin
