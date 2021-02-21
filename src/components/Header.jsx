@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import searchImg from '../../static/img/13.png'
-import dotsImg from '../../static/img/14.png'
+
+import searchImg from '../images/13.png'
+import dotsImg from '../images/14.png'
 
 const StyledBg = styled.div`
   width: ${(props) => props.width};
@@ -47,17 +48,17 @@ const Logo = styled.a`
   font-weight: bold;
 `
 
+const Category = styled.a`
+  line-height: 3.7rem;
+  border-bottom: 0.3rem solid ${(props) => props.borderColor};
+`
+
 const Categories = ({ names }) => {
   const [activeLink, setActiveLink] = useState('people')
 
   const click = (e) => {
     setActiveLink(e.target.textContent.toLowerCase())
   }
-
-  const Category = styled.a`
-    line-height: 3.7rem;
-    border-bottom: 0.3rem solid ${(props) => props.borderColor};
-  `
 
   return names.nodes.map((item) => (
     <Category
@@ -101,8 +102,16 @@ const Header = ({ data, categories }) => (
 )
 
 Header.propTypes = {
-  data: PropTypes.element.isRequired,
-  categories: PropTypes.element.isRequired,
+  data: PropTypes.string.isRequired,
+  categories: PropTypes.shape({
+    nodes: PropTypes.arrayOf(
+      PropTypes.shape({
+        data: PropTypes.shape({
+          name: PropTypes.string,
+        }),
+      })
+    ),
+  }).isRequired,
 }
 
 export default Header

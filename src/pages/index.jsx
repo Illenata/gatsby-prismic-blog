@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
+
 import Header from '../components/Header'
 import Main from '../components/Main'
 import Blog from '../components/Blog'
@@ -33,7 +34,7 @@ const Index = ({ data }) => {
 }
 
 Index.propTypes = {
-  data: PropTypes.element.isRequired,
+  data: PropTypes.string.isRequired,
 }
 
 export default Index

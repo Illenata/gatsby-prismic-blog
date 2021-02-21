@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import img from '../../static/img/11.png'
+import img from '../images/11.png'
 
 const StyledDiv = styled.div`
   display: flex;
@@ -57,7 +57,7 @@ const StyledSubmit = styled.input`
   cursor: pointer;
 `
 
-const Signin = () => (
+const Signup = () => (
   <StyledDiv>
     <div>
       <h2>Newsletter</h2>
@@ -70,4 +70,4 @@ const Signin = () => (
   </StyledDiv>
 )
 
-export default Signin
+export default Signup

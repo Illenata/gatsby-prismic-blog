@@ -2,8 +2,6 @@ require('dotenv').config({
   path: `.env`,
 })
 
-// const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
-
 const website = require('./config/website')
 
 const pathPrefix = website.pathPrefix === '/' ? '/' : website.pathPrefix
@@ -37,7 +35,6 @@ module.exports = {
         // Get the correct URLs in blog posts
         linkResolver: () => (post) => `/${post.uid}`,
         // PrismJS highlighting for labels and slices
-        // htmlSerializer: () => prismicHtmlSerializer,
       },
     },
     'gatsby-plugin-lodash',

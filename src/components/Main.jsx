@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import img from '../../static/img/10.png'
-import photo from '../../static/img/12.png'
-import arrow from '../../static/img/15.png'
+
+import img from '../images/10.png'
+import photo from '../images/12.png'
+import arrow from '../images/15.png'
 
 const StyledBackground = styled.div`
   width: 100%;
@@ -99,7 +100,7 @@ const Main = ({ data }) => {
 }
 
 Main.propTypes = {
-  data: PropTypes.element.isRequired,
+  data: PropTypes.string.isRequired,
 }
 
 export default Main

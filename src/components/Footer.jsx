@@ -33,7 +33,7 @@ const Footer = ({ data }) => {
 }
 
 Footer.propTypes = {
-  data: PropTypes.element.isRequired,
+  data: PropTypes.string.isRequired,
 }
 
 export default Footer

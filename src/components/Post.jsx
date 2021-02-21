@@ -48,68 +48,76 @@ const StyledSubtitle = styled.div`
   padding-bottom: 0.7rem;
 `
 
+const postBodyStyle = {
+  zIndex: '1',
+  position: 'absolute',
+  bottom: '1.7rem',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  margin: '0 10rem',
+  color: '#fff',
+  fontSize: '1.8rem',
+  textAlign: 'center',
+}
+
+const postSubtitleStyle = {
+  alignSelf: 'flex-end',
+  margin: '1rem -8rem 0 0',
+}
+
 const Post = ({ node }) => {
-  let width = '20.2rem'
-  let height = '13.8rem'
-  let PostBody = {}
-  let Subtitle = {}
+  const { author, body, categories, date, dimension, title } = node.data
+  const category = categories[0].category.document[0].data
+  const postAuthor = author.document[0].data.body[0].primary
 
-  if (node.data.dimension === 2) {
-    width = '31.3rem'
-    height = '14.4rem'
-  } else if (node.data.dimension === 3) {
-    width = '66.6rem'
-    height = '22.2rem'
-
-    PostBody = {
-      zIndex: '1',
-      position: 'absolute',
-      bottom: '1.7rem',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      margin: '0 10rem',
-      color: '#fff',
-      fontSize: '1.8rem',
-      textAlign: 'center',
-    }
-
-    Subtitle = {
-      alignSelf: 'flex-end',
-      margin: '1rem -8rem 0 0',
+  const getPostSize = () => {
+    switch (dimension) {
+      case 3:
+        return {
+          width: '66.6rem',
+          height: '22.2rem',
+        }
+      case 2:
+        return {
+          width: '31.3rem',
+          height: '14.4rem',
+        }
+      default:
+        return {
+          width: '20.2rem',
+          height: '13.8rem',
+        }
     }
   }
 
-  let background = 'lightblue'
-  if (node.data.body) {
-    const image = node.data.body.filter((s) => s.slice_type === 'image')
-    background = `url(${image[0].primary.image.url})`
+  const getPostBodyStyle = () => (dimension === 3 ? postBodyStyle : {})
+  const getPostSubtitleStyle = () => (dimension === 3 ? postSubtitleStyle : {})
+
+  const getBackground = () => {
+    let background = 'lightblue'
+    if (body) {
+      const image = node.data.body.filter((s) => s.slice_type === 'image')
+      background = `url(${image[0].primary.image.url})`
+    }
+    return background
   }
 
-  let categoryColor = '#000'
-  let categoryName = 'Default'
-  if (node.data.categories[0].category) {
-    categoryColor = node.data.categories[0].category.document[0].data.color
-    categoryName = node.data.categories[0].category.document[0].data.name
-  }
-
-  let author = 'John Doe'
-  let authorUrl = '#'
-  if (node.data.author) {
-    authorUrl = node.data.author.document[0].data.body[0].primary.link.url
-    author = node.data.author.document[0].data.body[0].primary.label.text
-  }
+  const getCategoryColor = () => (category ? category.color : '#000')
+  const getCategoryName = () => (category ? category.name : 'Default')
+  const getAuthorName = () => (postAuthor ? postAuthor.label.text : 'John Doe')
+  const getAuthorUrl = () => (postAuthor ? postAuthor.link.url : '#')
 
   return (
-    <StyledPost href="#" width={width}>
-      <StyledImage bgUrl={background} height={height} bgc={categoryColor}>
-        <div>{categoryName}</div>
+    <StyledPost href="#" width={getPostSize().width}>
+      <StyledImage bgUrl={getBackground()} height={getPostSize().height} bgc={getCategoryColor()}>
+        <div>{getCategoryName()}</div>
       </StyledImage>
-      <div style={PostBody}>
-        <p>{node.data.title.text}</p>
-        <StyledSubtitle style={Subtitle}>
-          {node.data.date ? node.data.date : '01.01.2021'} | &nbsp;
-          <a href={authorUrl}>{author}</a>
+      <div style={getPostBodyStyle()}>
+        <p>{title.text}</p>
+        <StyledSubtitle style={getPostSubtitleStyle()}>
+          {date ? `${date}` : '01.01.2021'} | &nbsp;
+          <a href={getAuthorUrl()}>{getAuthorName()}</a>
         </StyledSubtitle>
       </div>
     </StyledPost>
@@ -117,7 +125,7 @@ const Post = ({ node }) => {
 }
 
 Post.propTypes = {
-  node: PropTypes.element.isRequired,
+  node: PropTypes.string.isRequired,
 }
 
 export default Post
