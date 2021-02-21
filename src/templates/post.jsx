@@ -1,10 +1,26 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import styled from '@emotion/styled'
+// import React from 'react'
+// import PropTypes from 'prop-types'
+// import { graphql } from 'gatsby'
+// import styled from '@emotion/styled'
 // import { Layout, Listing, Wrapper, SliceZone, Title, SEO, Header } from '../components'
 // import Categories from '../components/Listing/Categories'
-import website from '../../config/website'
+// import Header from '../components/Header';
+// import Post from '../components/Post';
+
+// const PostPage = ({data}) => {
+//   const {
+//     homepage, posts, categories
+//   } = data;
+
+//   return (
+//     <>
+//       <Header data={homepage.data.title.text} categories={categories} />
+//       <Post key={post.uid} node={post} categories={categories} />
+//     </>
+//   )
+// }
+
+// export default PostPage;
 
 // const PostWrapper = Wrapper.withComponent('main')
 
@@ -57,21 +73,72 @@ import website from '../../config/website'
 // If this doesn't work for you query for __typename in body {} and GraphiQL will show them to you
 
 export const pageQuery = graphql`
-  query PostBySlug($uid: String!) {
-    prismicPost(uid: { eq: $uid }) {
+query PostQuery {
+  homepage: prismicHomepage {
+    data {
+      title {
+        text
+      }
+      content {
+        text
+        html
+      }
+      footer {
+        text
+        html
+      }
+    }
+  }
+  posts: allPrismicPost(sort: { fields: [data___date], order: DESC }) {
+    nodes {
       uid
-      first_publication_date
-      last_publication_date
       data {
+        author {
+          document {
+            data {
+              body {
+                primary {
+                  link {
+                    url
+                  }
+                  label {
+                    text
+                  }
+                }
+              }
+            }
+          }
+        }
+        dimension
+        body {
+          ... on PrismicPostBodyImage {
+            id
+            slice_type
+            primary {
+              image {
+                url
+              }
+            }
+          }
+          ... on PrismicPostBodyCodeBlock {
+            id
+          }
+          ... on PrismicPostBodyQuote {
+            id
+          }
+          ... on PrismicPostBodyText {
+            id
+          }
+        }
         title {
           text
         }
-        description
         date(formatString: "DD.MM.YYYY")
         categories {
           category {
             document {
               data {
+                color
                 name
               }
             }
@@ -79,25 +146,13 @@ export const pageQuery = graphql`
         }
       }
     }
-    posts: allPrismicPost(limit: 2, sort: { fields: [data___date], order: DESC }, filter: { uid: { ne: $uid } }) {
-      nodes {
-        uid
-        data {
-          title {
-            text
-          }
-          date(formatString: "DD.MM.YYYY")
-          categories {
-            category {
-              document {
-                data {
-                  name
-                }
-              }
-            }
-          }
-        }
+  }
+  categories: allPrismicCategory {
+    nodes {
+      data {
+        name
       }
     }
   }
+}
 `

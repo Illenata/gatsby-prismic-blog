@@ -54,6 +54,7 @@ const StyledSubmit = styled.input`
   background: #fff;
   color: #2c6bff;
   font-weight: bold;
+  cursor: pointer;
 `
 
 const Signin = () => {

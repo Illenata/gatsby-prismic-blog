@@ -5,7 +5,7 @@ import Post from './Post';
 const StyledBlog = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin: 2rem -2rem 0 0;
   width: 66.6rem;
 `
 

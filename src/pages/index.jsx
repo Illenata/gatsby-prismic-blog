@@ -8,10 +8,14 @@ import Footer from '../components/Footer';
 import styled from '@emotion/styled';
 
 const StyledWrapper = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  font-family: 'PT Sans', sans-serif;
 `
 
 const Index = ({data}) => {

@@ -7,7 +7,9 @@ import arrow from '../utils/img/15.png'
 const StyledBackground = styled.div`
   width: 100%;
   height: 45rem;
-  background: url(${img});
+  background: url(${img}) no-repeat;
+  background-size: cover;
+  background-position: center;
 `
 
 const StyledOverlay = styled.div`
@@ -66,8 +68,8 @@ const SliderButton = styled.div`
   }
 
   &:hover img {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.3rem;
+    height: 2.3rem;
   }
 `
 
