@@ -125,7 +125,7 @@ const Post = ({ node }) => {
 }
 
 Post.propTypes = {
-  node: PropTypes.string.isRequired,
+  node: PropTypes.object.isRequired,
 }
 
 export default Post

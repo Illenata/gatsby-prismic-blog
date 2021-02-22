@@ -34,7 +34,7 @@ const Index = ({ data }) => {
 }
 
 Index.propTypes = {
-  data: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 }
 
 export default Index

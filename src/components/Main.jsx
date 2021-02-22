@@ -100,7 +100,7 @@ const Main = ({ data }) => {
 }
 
 Main.propTypes = {
-  data: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 }
 
 export default Main

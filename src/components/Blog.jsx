@@ -20,7 +20,7 @@ const Blog = ({ posts }) => (
 )
 
 Blog.propTypes = {
-  posts: PropTypes.string.isRequired,
+  posts: PropTypes.object.isRequired,
 }
 
 export default Blog
